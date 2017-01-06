@@ -32,23 +32,23 @@ public class AccountTest {
     @Test
     public void when_withdrawingMoney_expect_moneyWithdrawnEvent() throws Exception {
         fixture.given(new AccountCreatedEvent(ACCOUNT_ID, OVERDRAFT_LIMIT))
-                .when(new WithdrawMoneyCommand(ACCOUNT_ID, 600))
-                .expectEvents(new MoneyWithdrawnEvent(ACCOUNT_ID, 600, -600));
+                .when(new WithdrawMoneyCommand(ACCOUNT_ID, "tx1", 600))
+                .expectEvents(new MoneyWithdrawnEvent(ACCOUNT_ID, "tx1", 600, -600));
 
     }
 
     @Test
     public void when_withdrawingTooMuchMoney_expect_OverdraftLimitExceededException() throws Exception {
         fixture.given(new AccountCreatedEvent(ACCOUNT_ID, OVERDRAFT_LIMIT))
-                .when(new WithdrawMoneyCommand(ACCOUNT_ID, 1001))
+                .when(new WithdrawMoneyCommand(ACCOUNT_ID, "tx1", 1001))
                 .expectNoEvents()
                 .expectException(OverdraftLimitExceededException.class);
     }
 
     @Test
     public void when_withdrawingTooMuchMoneyBySecondWithdrawal_expect_OverdraftLimitExceededException() throws Exception {
-        fixture.given(new AccountCreatedEvent(ACCOUNT_ID, OVERDRAFT_LIMIT), new MoneyWithdrawnEvent(ACCOUNT_ID, 999, -999))
-                .when(new WithdrawMoneyCommand(ACCOUNT_ID, 2))
+        fixture.given(new AccountCreatedEvent(ACCOUNT_ID, OVERDRAFT_LIMIT), new MoneyWithdrawnEvent(ACCOUNT_ID, "tx1", 999, -999))
+                .when(new WithdrawMoneyCommand(ACCOUNT_ID, "tx2", 2))
                 .expectNoEvents()
                 .expectException(OverdraftLimitExceededException.class);
     }
