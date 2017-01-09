@@ -7,11 +7,11 @@ This is my first attempt at using Axon Framework version 3. Due to some differen
 
 I followed these three videos and added my own spin as I wanted:
 
- * [Getting started with Axon 3 Live coding 1](https://www.youtube.com/watch?v=s2zH7BsqtAk).
+ - [Getting started with Axon 3 Live coding 1](https://www.youtube.com/watch?v=s2zH7BsqtAk).
  
- * [Getting started with Axon 3 Live coding 2](https://www.youtube.com/watch?v=Fj365BufWNU).
+ - [Getting started with Axon 3 Live coding 2](https://www.youtube.com/watch?v=Fj365BufWNU).
  
- * [Getting started with Axon 3 Live coding 3](ttps://www.youtube.com/watch?v=qqk2Df_0Pm8).
+ - [Getting started with Axon 3 Live coding 3](ttps://www.youtube.com/watch?v=qqk2Df_0Pm8).
 
 ###Credit - Getting started with Axon 3 Live coding sessions 1-3
 **by**: [Trifork Webinar Channel](https://www.youtube.com/channel/UCz9eNSe8kY7z8DEyvv-slZg)
@@ -57,8 +57,8 @@ ___
 **-What I had to change to make things work**
 
 ###Video 1
-1. Use H2 instead of hsqldb. This will allow you to easily see what is happening in the H2 db via the web console. Take a look at the `application.yml`.
-2. The way you instantiate an Aggregate fixture is not:
+- Use H2 instead of hsqldb. This will allow you to easily see what is happening in the H2 db via the web console. Take a look at the `application.yml`.
+- The way you instantiate an Aggregate fixture is not:
 ``` Java
 ...
     private FixtureConfiguration<Account> fixture;
@@ -83,8 +83,8 @@ import org.axonframework.test.aggregate.FixtureConfiguration;
         fixture = new AggregateTestFixture(Account.class);
     }
 ```
-2. You no longer need to use the annotation @EnableAxonAutoConfiguration on your Spring Boot Application class. The  `axon-spring-boot-autoconfigure` dependency now takes care of that.
-3. When testing instead of placing the "test code" in the main class, I  create a proper Integration test and check that the context runs:
+- You no longer need to use the annotation @EnableAxonAutoConfiguration on your Spring Boot Application class. The  `axon-spring-boot-autoconfigure` dependency now takes care of that.
+- When testing instead of placing the "test code" in the main class, I  create a proper Integration test and check that the context runs:
 ```Java
     @Test
     public void when_startingUpTheApplicationContext_expect_CommandBussuccessful() throws SQLException {
@@ -96,7 +96,7 @@ import org.axonframework.test.aggregate.FixtureConfiguration;
         commandBus.dispatch(asCommandMessage(new WithdrawMoneyCommand("54321", 250)));
     }
 ```
-4. I do not implement the AsynchronousCommandBus because at this point we don't need it. However here is the bean code you will need to add to your config:
+- I do not implement the AsynchronousCommandBus because at this point we don't need it. However here is the bean code you will need to add to your config:
 ```Java
     @Bean
     public CommandBus getCommandBus() {
@@ -106,7 +106,7 @@ import org.axonframework.test.aggregate.FixtureConfiguration;
 
 ###Video 2
 
-1. The way you instantiate a Saga fixture is not:
+- The way you instantiate a Saga fixture is not:
 ``` Java
 ...
     private FixtureConfiguration fixture;
@@ -132,7 +132,7 @@ import org.axonframework.test.saga.SagaTestFixture;
     }
 ...
 ```
-2. When you test a saga, there is a subtle difference when you check the output of your dispatched commands. This is because the full release now has a `Matchers` Class. Therefore for ease of use just use `expectDispatchedCommands(...)` method:
+- When you test a saga, there is a subtle difference when you check the output of your dispatched commands. This is because the full release now has a `Matchers` Class. Therefore for ease of use just use `expectDispatchedCommands(...)` method:
 ``` Java
 ...
     fixture.givenNoPriorActivity()
@@ -150,7 +150,7 @@ Will need to be:
          .expectDispatchedCommands(new WithdrawMoneyCommand("acct1", 100));
 ...
 ```
-3. Somehwere between the two webinars there is code missing from Account:
+- Some where between the two webinars there is code missing from Account:
 ``` Java
     ...
     @CommandHandler
@@ -164,7 +164,7 @@ Will need to be:
     }
     ...
 ```
-4. He has set all logging to INFO so this is optional (logback.xml):
+- He has set all logging to INFO so this is optional (logback.xml):
 ``` XML
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
@@ -172,7 +172,7 @@ Will need to be:
     <logger name="org.springframework.web" level="INFO"/>
 </configuration>
 ```     
-5. For the event Handler in plain java the config needs to look like this, also I used slf4j instead of print lines:
+- For the event Handler in plain java the config needs to look like this, also I used slf4j instead of print lines:
 ``` Java
 ...
     Configuration config = DefaultConfigurer.defaultConfiguration()
@@ -184,11 +184,24 @@ Will need to be:
         .buildConfiguration();
 ...
 ```
-6. I removed the changes that give the Saga a UUID as this breaks testability.
+- I removed the changes that give the Saga a UUID as this breaks testability.
 
 ###Video 3
 
-1. I didn't have remove a lot of my configuration because I am already using the release...
-2. I recommend that you set logging to `DEBUG` in the logback.xml file and then turn on `spring.jpa.show-sql = true` in the application.yml configuration. This will help you understand what is happening in the code better.
-3. Remember I selected h2 database? Use the web console to view the Account Balances using `/console` and make sure you have the same Url as the config.
-4. I have removed the plain java `Application` class as I want to focus on the Spring boot implementation.
+- I didn't have remove a lot of my configuration because I am already using the release...
+- I recommend that you set logging to `DEBUG` in the logback.xml file and then turn on `spring.jpa.show-sql = true` in the application.yml configuration. This will help you understand what is happening in the code better.
+- Remember I selected h2 database? Use the web console to view the Account Balances using `/console` and make sure you have the same Url as the config.
+- I have removed the plain java `Application` class as I want to focus on the Spring boot implementation.
+
+___
+### Testing
+
+Use http://localhost:8080/console to access the H2 console. (note change port if you using another port)
+ - JDBC Url: dbc:h2:mem:axon3db;MODE=Oracle;DB_CLOSE_ON_EXIT=FALSE
+ - User name: sa
+ - Password: 
+ 
+Then you can use http://localhost:8080/TransactionHistory/1 to see the transaction history for account 1.
+and http://localhost:8080/TransferMoney/simple?sourceId=1&destinationId=2&amount=200 to transfer money from account 1 to 2.
+
+ 
