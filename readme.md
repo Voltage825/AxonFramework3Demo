@@ -1,5 +1,5 @@
 #Axon Framework 3.0 with Spring Boot
----
+___
 ## About this Project
 
 This is my first attempt at using Axon Framework version 3. Due to some differences between the Milestone releases and the Full Release, I had to modify some of the code. You will see the differences in the **Differences** section in this Readme.
@@ -19,9 +19,9 @@ I followed these three videos and added my own spin as I wanted:
  
  At the time of writing this project the documentation was incomplete. Check [here](https://docs.axonframework.org/v/3.0/) for the latest documentation. 
  
- ___
+___
  
- ## Maven:
+## Maven:
  
  In my maven pom I added these four dependencies rather than the milestones:
  
