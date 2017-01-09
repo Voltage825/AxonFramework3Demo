@@ -23,7 +23,8 @@ import com.val.example.axon3framework.transferapi.MoneyTransferCancelledEvent;
 import com.val.example.axon3framework.transferapi.MoneyTransferCompletedEvent;
 import com.val.example.axon3framework.transferapi.RequestedMoneyTransferEvent;
 
-@Saga(sagaStore = "sagaStore")
+// @Saga(sagaStore = "sagaStore") //to use your own saga store
+@Saga
 public class MoneyTransferSaga {
 
     @Inject

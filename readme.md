@@ -8,10 +8,12 @@ This is my first attempt at using Axon Framework version 3. Due to some differen
 I followed these three videos and added my own spin as I wanted:
 
  * [Getting started with Axon 3 Live coding 1](https://www.youtube.com/watch?v=s2zH7BsqtAk).
+ 
  * [Getting started with Axon 3 Live coding 2](https://www.youtube.com/watch?v=Fj365BufWNU).
+ 
  * [Getting started with Axon 3 Live coding 3](ttps://www.youtube.com/watch?v=qqk2Df_0Pm8).
 
-Credit - Getting started with Axon 3 Live coding sessions 1-3
+###Credit - Getting started with Axon 3 Live coding sessions 1-3
 **by**: [Trifork Webinar Channel](https://www.youtube.com/channel/UCz9eNSe8kY7z8DEyvv-slZg)
 
  
@@ -39,7 +41,7 @@ Credit - Getting started with Axon 3 Live coding sessions 1-3
 	<artifactId>axon-spring-boot-autoconfigure</artifactId>
 	<version>3.0</version>
 </dependency>
-<!-- You will need this in video 2 -->
+<!-- You will need this in video 2-->
 <dependency>
 	<groupId>javax.inject</groupId>
 	<artifactId>javax.inject</artifactId>
@@ -103,6 +105,7 @@ import org.axonframework.test.aggregate.FixtureConfiguration;
 ```
 
 ###Video 2
+
 1. The way you instantiate a Saga fixture is not:
 ``` Java
 ...
@@ -182,3 +185,10 @@ Will need to be:
 ...
 ```
 6. I removed the changes that give the Saga a UUID as this breaks testability.
+
+###Video 3
+
+1. I didn't have remove a lot of my configuration because I am already using the release...
+2. I recommend that you set logging to `DEBUG` in the logback.xml file and then turn on `spring.jpa.show-sql = true` in the application.yml configuration. This will help you understand what is happening in the code better.
+3. Remember I selected h2 database? Use the web console to view the Account Balances using `/console` and make sure you have the same Url as the config.
+4. I have removed the plain java `Application` class as I want to focus on the Spring boot implementation.

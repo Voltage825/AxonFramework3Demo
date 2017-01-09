@@ -21,7 +21,8 @@ import com.val.example.axon3framework.domain.account.exceptions.OverdraftLimitEx
 
 import lombok.NoArgsConstructor;
 
-@Aggregate(repository = "jpaAccountRepository")
+//@Aggregate(repository = "jpaAccountRepository") // To use your custom repository
+@Aggregate
 @NoArgsConstructor
 @Entity
 public class Account {

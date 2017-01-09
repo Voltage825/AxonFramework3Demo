@@ -44,7 +44,6 @@ public class MoneyTransferSagaTest {
                 .expectDispatchedCommands(new CompleteMoneyTransferCommand("tf1"));
     }
 
-
     @Test
     public void when_given_RequestedMoneyTransferEventAndMoneyWithdrawnEventAndDepositedMoneyEvent_expect_whenPublishingAMoneyTransferCompletedEventExpectNoActiveSagas() throws Exception {
         fixture.givenAPublished(new RequestedMoneyTransferEvent("tf1", "acc1", "acc2", 100))
