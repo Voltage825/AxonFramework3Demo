@@ -11,7 +11,7 @@ I followed these three videos and added my own spin as I wanted:
  
  - [Getting started with Axon 3 Live coding 2](https://www.youtube.com/watch?v=Fj365BufWNU).
  
- - [Getting started with Axon 3 Live coding 3](ttps://www.youtube.com/watch?v=qqk2Df_0Pm8).
+ - [Getting started with Axon 3 Live coding 3](https://www.youtube.com/watch?v=qqk2Df_0Pm8).
 
 ###Credit - Getting started with Axon 3 Live coding sessions 1-3
 **by**: [Trifork Webinar Channel](https://www.youtube.com/channel/UCz9eNSe8kY7z8DEyvv-slZg)
@@ -20,6 +20,7 @@ I followed these three videos and added my own spin as I wanted:
  At the time of writing this project the documentation was incomplete. Check [here](https://docs.axonframework.org/v/3.0/) for the latest documentation. 
  
  ___
+ 
  ## Maven:
  
  In my maven pom I added these four dependencies rather than the milestones:
