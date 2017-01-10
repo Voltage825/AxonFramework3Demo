@@ -2,7 +2,7 @@
 ___
 ## About this Project
 
-This is my first attempt at using Axon Framework version 3. Due to some differences between the Milestone releases and the Full Release, I had to modify some of the code. You will see the differences in the **Differences** section in this Readme.
+This is my first attempt at using Axon Framework version 3. Due to some differences between the Milestone releases and the Full Release, I had to modify some of the code. You will see the differences in the **[Differences](#differences)** section in this Readme.
 **(December 30th 2016) Version 3.0 had just come out so it makes sense to use the latest.**
 
 I followed these three videos and added my own spin as I wanted:
